@@ -15,17 +15,26 @@ let reg = /\n/ig;
 //     data[x] = newEntry;
 // }
 
-data = data.map( function(x) { return parseInt(x)
+// data = data.map( function(x) { return parseInt(x)
+// })
+
+data = data.map((x) => {
+    return [x.split(" ")[0][0], parseInt(x.split(" ")[1])]
 })
 
-let count = 0;
-
-for (let x = 0; x < data.length-3; x++) {
-    let first = data[x] + data[x+1] + data[x+2]
-    let second = data[x+1] + data[x+2] + data[x+3]
-    if (second > first) {
-        count++
+let h = 0;
+let d = 0;
+let a = 0;
+data.filter( (x) => {
+    if(x[0] == 'f') {
+        h = h + x[1]
+        d = d + (x[1]*a)
+    } else if (x[0] == 'd') {
+        a = a + x[1]
+    } else if (x[0] == 'u') {
+        a = a - x[1]
     }
-}
+    return
+})
 
-console.log(count)
+console.log("h: %d \t d: %d \t and final: ", h,d, (d*h))
