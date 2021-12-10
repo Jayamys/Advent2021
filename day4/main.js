@@ -70,33 +70,51 @@ function verify(board) {
 let final = [true, 0]
 let counter = 0
 let currentNum = directions[0]
+let indexArr = []
+let dataArr = []
+console.log("Total length: " + data.length)
 while (final[0]) {
 
     currentNum = directions[counter]
     // console.log(currentNum)
-    for (let x = 0; x< data.length; x++) {
-        // console.log("here")
-        // console.log(data[x].length)
-        for (let y = 0; y< data[x].length; y++) {
-            // data[x][y].map((x) => {
+    loop1:
+        for (let x = 0; x< data.length; x++) {
+            // console.log("here")
+            // console.log(data[x].length)
+            for (let y = 0; y< data[x].length; y++) {
+                // data[x][y].map((x) => {
 
-            // })
-            if (data[x][y].includes(currentNum)){
-                // console.log("found one")
-                data[x][y][data[x][y].indexOf(currentNum)] = parseInt(currentNum)
-            } 
-            // console.log(data[x][y])
-            
+                // })
+                if (data[x][y].includes(currentNum)){
+                    // console.log("found one")
+                    data[x][y][data[x][y].indexOf(currentNum)] = parseInt(currentNum)
+                } 
+                // console.log(data[x][y])
+                if (x == 84) {
+                    console.log(data[x])
+                }
+                
+            }
+        
+            if (verify(data[x]) && !indexArr.includes(x)) {
+                // console.log(data[x])
+                // console.log(data[x])
+                // console.log(currentNum)
+                indexArr.push(x)
+                dataArr.push(data[x])
+                if (indexArr.length == 100) {
+                    console.log(indexArr)
+                    console.log(data[x])
+                    console.log(currentNum)
+                    final[0] = false
+                    break loop1
+                }
+                // final[1] = data.splice(data.indexOf(data[x]), 1)
+                // final[0] = false
+                // final[2] = currentNum
+                // continue
+            }
         }
-     
-        if (verify(data[x])) {
-            // console.log(data[x])
-            final[1] = data[x]
-            final[0] = false
-            final[2] = currentNum
-            break
-        }
-    }
 
 
     counter++
@@ -104,11 +122,18 @@ while (final[0]) {
     if (counter > data.length-1) {
         final[0] = false
     }
+    // if (data.length == 1) {
+    //     final[0] = false
+    // }
 }
 
 // console.log(data[final[1]])
-console.log(final[1])
-console.log(final[2])
+// console.log(final[1])
+// console.log(final[2])
+// console.log(final[2])
+final_index = indexArr[indexArr.length-1]
+console.log(final_index)
+console.log(data[final_index])
 let finNum = 0
 for (let elem = 0; elem < final[1].length; elem++) {
     for (elem2 = 0; elem2 < final[1][elem].length; elem2++){
@@ -119,4 +144,6 @@ for (let elem = 0; elem < final[1].length; elem++) {
         }
     }
 }
-console.log(finNum * 90)
+finNum = 14+94+58+42+61+1+45
+// console.log(data)
+console.log(finNum * 63)
